@@ -6,7 +6,14 @@
         xmlns:local="clr-namespace:Save_the_Humans"
         mc:Ignorable="d"
         Title="Save the Humans" Height="700" Width="1000">
-    <Grid>
+    <Window.Resources>
+        <ControlTemplate x:Key="EnemyTemplate" TargetType="{x:Type ContentControl}">
+            <Grid>
+                <Ellipse Fill="Red" Height="100" Stroke="Black" Width="100"/>
+            </Grid>
+        </ControlTemplate>
+    </Window.Resources>
+    <Grid Background="Black">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="140"/>
             <ColumnDefinition/>
@@ -17,13 +24,20 @@
             <RowDefinition Height="150"/>
         </Grid.RowDefinitions>
         <Button x:Name="startButton" Content="Start!" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center"/>
-        <ProgressBar Grid.Column="1" HorizontalAlignment="Left" Height="10" Margin="50,59.6,0,0" Grid.Row="1" VerticalAlignment="Top" Width="100"/>
+        <ProgressBar Grid.Column="1" Grid.Row="1" Height="20"/>
         <StackPanel Grid.Column="2" Orientation="Vertical" Grid.Row="1">
-            <TextBlock TextWrapping="Wrap" Text="Avoid  These" FontSize="18"/>
+            <TextBlock TextWrapping="Wrap" Text="Avoid  These" FontSize="18" Foreground="White"/>
 
-            <ContentControl Content="ContentControl" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <ContentControl Content="ContentControl" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Template="{DynamicResource EnemyTemplate}"/>
         </StackPanel>
-        <Canvas Grid.Column="1" HorizontalAlignment="Left" Height="100" Margin="50,30,0,0" VerticalAlignment="Top" Width="100"/>
+        <Canvas x:Name="playArea" Grid.ColumnSpan="3">
+            <Canvas.Background>
+                <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                    <GradientStop Color="#FF06FA09" Offset="1"/>
+                    <GradientStop Color="#FFBF07F3"/>
+                </LinearGradientBrush>
+            </Canvas.Background>
+        </Canvas>
 
     </Grid>
 </Window>
