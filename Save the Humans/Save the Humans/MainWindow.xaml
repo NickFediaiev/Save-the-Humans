@@ -23,13 +23,8 @@
             <RowDefinition/>
             <RowDefinition Height="150"/>
         </Grid.RowDefinitions>
-        <Button x:Name="startButton" Content="Start!" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center"/>
+        <Button x:Name="startButton" Content="Start!" Grid.Row="1" VerticalAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" Click="startButton_Click"/>
         <ProgressBar Grid.Column="1" Grid.Row="1" Height="20"/>
-        <StackPanel Grid.Column="2" Orientation="Vertical" Grid.Row="1">
-            <TextBlock TextWrapping="Wrap" Text="Avoid  These" FontSize="18" Foreground="White"/>
-
-            <ContentControl Content="ContentControl" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Template="{DynamicResource EnemyTemplate}"/>
-        </StackPanel>
         <Canvas x:Name="playArea" Grid.ColumnSpan="3">
             <Canvas.Background>
                 <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
@@ -37,7 +32,33 @@
                     <GradientStop Color="#FFBF07F3"/>
                 </LinearGradientBrush>
             </Canvas.Background>
+            <StackPanel x:Name="human" Orientation="Vertical">
+                <Ellipse Fill="White" Height="10" Stroke="Black" Width="10"/>
+                <Rectangle Fill="White" Height="25" Stroke="Black" Width="10"/>
+            </StackPanel>
+            <TextBlock x:Name="gameOverText" Canvas.Left="254" TextWrapping="Wrap" Text="Game Over" Canvas.Top="192" FontFamily="Arial" FontSize="100" FontWeight="Bold" FontStyle="Italic" TextDecorations="{x:Null}"/>
+            <Rectangle x:Name="target" Height="50" Canvas.Left="734" Stroke="Black" Canvas.Top="308" Width="50" RenderTransformOrigin="0.5,0.5">
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="45"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+                <Rectangle.Fill>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black" Offset="0"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </Rectangle.Fill>
+            </Rectangle>
         </Canvas>
+        <StackPanel Grid.Column="2" Orientation="Vertical" Grid.Row="1">
+            <TextBlock TextWrapping="Wrap" Text="Avoid  These" FontSize="18" Foreground="White"/>
+
+            <ContentControl Content="ContentControl" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center" Template="{DynamicResource EnemyTemplate}"/>
+        </StackPanel>
 
     </Grid>
 </Window>
