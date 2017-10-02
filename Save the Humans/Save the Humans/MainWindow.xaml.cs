@@ -87,14 +87,6 @@ namespace Save_the_Humans
             AnimateEnemy(enemy, 0, playArea.ActualWidth - 100, "(Canvas.Left)");
             AnimateEnemy(enemy, random.Next((int)playArea.ActualHeight - 100), random.Next((int)playArea.ActualHeight - 100), "(Canvas.Top)");
             playArea.Children.Add(enemy);
-
-            enemy.MouseEnter += Enemy_MouseEnter;
-        }
-
-        private void Enemy_MouseEnter(object sender, MouseEventArgs e)
-        {
-            if (humanCaptured)
-                EndTheGame();
         }
 
         private void AnimateEnemy(ContentControl enemy, double from, double to, string propertyToAnimate)
@@ -123,16 +115,13 @@ namespace Save_the_Humans
 
         private void target_MouseEnter(object sender, MouseEventArgs e)
         {
-            if (targetTimer.IsEnabled && humanCaptured)
-            {
-                progressBar.Value = 0;
-                Canvas.SetLeft(target, random.Next(100, (int)playArea.ActualWidth - 100));
-                Canvas.SetTop(target, random.Next(100, (int)playArea.ActualHeight - 100));
-                Canvas.SetLeft(human, random.Next(100, (int)playArea.ActualWidth - 100));
-                Canvas.SetTop(human, random.Next(100, (int)playArea.ActualHeight - 100));
-                humanCaptured = false;
-                human.IsHitTestVisible = true;
-            }
+            progressBar.Value = 0;
+            Canvas.SetLeft(target, random.Next(100, (int)playArea.ActualWidth - 100));
+            Canvas.SetTop(target, random.Next(100, (int)playArea.ActualHeight - 100));
+            Canvas.SetLeft(human, random.Next(100, (int)playArea.ActualWidth - 100));
+            Canvas.SetTop(human, random.Next(100, (int)playArea.ActualHeight - 100));
+            humanCaptured = false;
+            human.IsHitTestVisible = true;
         }
 
         private void playArea_MouseMove(object sender, MouseEventArgs e)
